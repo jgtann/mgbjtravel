@@ -1,163 +1,153 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const vientianePlan = [
+  {
+    dayLabel: "Day 1",
+    date: "Feb 22, 2026",
+    base: "Vientiane",
+    time: ["12:05pm"],
+    title: "Arrival + Key Landmarks + Youth Exchange",
+    bullets: [
+      "Arrive at Wattay Airport and meet tour guide",
+      "Lunch at local Laos restaurant",
+      "Visit Patuxay Monument",
+      "Visit That Luang Stupa",
+      "Hotel check-in",
+      "Introduce Laos HeartBeat Football Team; give out trophy + man of the match",
+      "Dinner and interaction with Laos youth",
+    ],
+    meals: "Lunch, Dinner",
+  },
+  {
+    dayLabel: "Day 4",
+    date: "Feb 25, 2026",
+    base: "Vientiane",
+    time: ["12:20pm"],
+    title: "Return to Vientiane + Arts & Light",
+    bullets: [
+      "Arrive in Vientiane (via high-speed train) and go for lunch at local restaurant",
+      "Visit Lao Art Museum",
+      "Visit Home of Light",
+      "Hotel check-in",
+      "Dinner at Kong View Restaurant",
+    ],
+    meals: "Breakfast, Lunch (Dinner listed in itinerary text)",
+  },
+  {
+    dayLabel: "Day 5",
+    date: "Feb 26, 2026",
+    base: "Vientiane",
+    time: ["6:00am", "10:00am"],
+    title: "Group A Departure / Group B Extension",
+    bullets: [
+      "Breakfast at hotel",
+      "Group A: transfer to airport + depart to Singapore",
+      "Group B: coach to Vang Vieng (extension begins)",
+    ],
+    meals: "Breakfast",
+    note: "This is the day the itinerary splits into Group A and Group B.",
+  },
+  {
+    dayLabel: "Day 7",
+    date: "Feb 28, 2026",
+    base: "Vientiane",
+    time: ["9:00am"],
+    title: "Back to Vientiane + Leisure & Local Fun",
+    bullets: [
+      "Breakfast at hotel",
+      "Return to Vientiane",
+      "Shopping",
+      "Local resident house visit",
+      "Karaoke",
+      "Massage",
+    ],
+    meals: "Breakfast, Lunch",
+  },
+];
+
+function renderLines(lines) {
+  if (!lines || lines.length === 0) return "—";
+  if (lines.length === 1) return lines[0];
+  return (
+    <>
+      {lines.map((t, i) => (
+        <React.Fragment key={`${t}-${i}`}>
+          {t}
+          {i < lines.length - 1 ? <br /> : null}
+        </React.Fragment>
+      ))}
+    </>
+  );
+}
+
 export default function Vientiane() {
-  // Pulled from your 8D7N itinerary PDF: Vientiane appears on Day 1 (arrival),
-  // Day 4 (return from Luang Prabang), Day 7 (back from Vang Vieng), Day 8 (departure).
-  const signatureMoments = [
-    {
-      title: "Patuxay + That Luang (arrival-day highlights)",
-      detail:
-        "After landing, we keep it simple: lunch, a gentle city introduction, then Patuxay Monument and That Luang Stupa.",
-      vibe: "Grounding, cultural, low-pressure",
-    },
-    {
-      title: "Laos HeartBeat Football Team exchange",
-      detail:
-        "A meaningful community moment: meet the Laos HeartBeat team, trophy + man of the match presentation, then shared time together.",
-      vibe: "Warm, human, purpose-led",
-    },
-    {
-      title: "Dinner + interaction with Laos youth",
-      detail:
-        "An easy-going evening that prioritises connection over rushing—good food, conversation, and cultural exchange.",
-      vibe: "Connected, uplifting",
-    },
-    {
-      title: "Lao Art Museum + Home of Light (return day)",
-      detail:
-        "When we return to Vientiane, we slow down with art and atmosphere—cultural stops that feel calm and reflective.",
-      vibe: "Creative, restorative",
-    },
-    {
-      title: "Shopping + local house visit + massage option (final stretch)",
-      detail:
-        "A soft finish: browse, visit, unwind with massage, and keep energy light before departure.",
-      vibe: "Easy, decompressing",
-    },
-  ];
-
-  const vientianeSchedule = [
-    {
-      day: "Day 1",
-      date: "Feb 22, 2026",
-      base: "Vientiane",
-      plan: [
-        "Arrive Wattay Airport → meet guide",
-        "Lunch at local Laos restaurant",
-        "Patuxay Monument + That Luang Stupa",
-        "Hotel check-in",
-        "Laos HeartBeat Football Team: trophy + man of the match",
-        "Dinner + interaction with Laos youth",
-      ],
-      meals: "Lunch, Dinner",
-    },
-    {
-      day: "Day 4",
-      date: "Feb 25, 2026",
-      base: "Vientiane",
-      plan: [
-        "High-speed train back from Luang Prabang (First Class)",
-        "Lunch in Vientiane",
-        "Lao Art Museum + Home of Light",
-        "Hotel check-in",
-        "Dinner at Kong View Restaurant",
-      ],
-      meals: "Breakfast, Lunch",
-    },
-    {
-      day: "Day 7",
-      date: "Feb 28, 2026",
-      base: "Vientiane",
-      plan: [
-        "Return from Vang Vieng to Vientiane",
-        "Shopping",
-        "Local resident house visit",
-        "Karaoke",
-        "Massage (optional wind-down)",
-      ],
-      meals: "Breakfast, Lunch",
-    },
-    {
-      day: "Day 8",
-      date: "Mar 1, 2026",
-      base: "Vientiane",
-      plan: ["Breakfast", "Transfer to airport", "Fly to Singapore"],
-      meals: "Breakfast",
-    },
-  ];
-
   return (
     <main className="section">
       <div className="container">
         <span className="badge">🧘 Destination Spotlight</span>
-        <h1>Vientiane: a soft landing + meaningful connection</h1>
+        <h1>Vientiane: landmarks, culture, and warm community moments</h1>
+
         <p>
-          Vientiane is where we begin (and later return to) for a slower, steadier rhythm—
-          the kind that helps everyone settle after travel. We keep the first day
-          <b> gentle and grounded</b> with iconic city sights (Patuxay + That Luang),
-          then move into the retreat’s heart: community connection through the
-          Laos HeartBeat Football Team exchange and an evening with Laos youth.
+          In this 8D7N route, Vientiane is not just a transit point—it’s where the journey begins with
+          iconic monuments, and later returns for arts, light installations, and relaxed leisure time
+          (shopping, massage, karaoke). :contentReference[oaicite:1]{index=1}
         </p>
 
         <div className="grid cards" style={{ marginTop: 18 }}>
           <article className="card">
-            <h3>Arrival-day flow</h3>
-            <p>Lunch • Patuxay • That Luang • check-in • early evening connection (no rushing).</p>
+            <h3>Iconic landmarks</h3>
+            <p>Patuxay Monument and That Luang Stupa are the headline visits on arrival day.</p>
           </article>
           <article className="card">
-            <h3>Purpose-led moments</h3>
-            <p>Football team meet + trophy exchange • dinner interaction with Laos youth.</p>
+            <h3>Arts & Light</h3>
+            <p>Lao Art Museum + Home of Light are featured after returning from Luang Prabang.</p>
           </article>
           <article className="card">
-            <h3>Return-day calm</h3>
-            <p>Art + light-filled cultural stops • easy dinner • massage option before departure.</p>
+            <h3>Community moments</h3>
+            <p>Special interaction with Laos youth / Laos HeartBeat Football Team is included on Day 1.</p>
           </article>
         </div>
 
         <div className="panel" style={{ marginTop: 18 }}>
-          <h2>Signature moments we love in Vientiane</h2>
+          <h2>Vientiane itinerary highlights (from the tour plan)</h2>
 
-          <div className="grid cards" style={{ marginTop: 12 }}>
-            {signatureMoments.map((m) => (
-              <article className="card" key={m.title}>
-                <h3 style={{ marginBottom: 6 }}>{m.title}</h3>
-                <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>{m.detail}</p>
-                <p style={{ marginTop: 10, fontSize: 13, color: "var(--muted)" }}>
-                  <b>Vibe:</b> {m.vibe}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        <div className="panel" style={{ marginTop: 18 }}>
-          <h2>Vientiane schedule (as per the 8D7N plan)</h2>
-
-          <table className="itinerary" aria-label="Vientiane schedule table">
+          <table className="itinerary" aria-label="Vientiane itinerary table">
             <thead>
               <tr>
-                <th>Day</th>
-                <th>Date</th>
-                <th>Base</th>
-                <th>Plan</th>
+                <th>Day / Date</th>
+                <th>Time</th>
+                <th>Focus</th>
+                <th>What’s planned</th>
                 <th>Meals</th>
               </tr>
             </thead>
             <tbody>
-              {vientianeSchedule.map((row) => (
-                <tr key={`${row.day}-${row.date}`}>
-                  <td className="day">{row.day}</td>
-                  <td>{row.date}</td>
-                  <td>{row.base}</td>
+              {vientianePlan.map((d) => (
+                <tr key={`${d.dayLabel}-${d.date}`}>
+                  <td className="day">
+                    {d.dayLabel}
+                    <br />
+                    {d.date}
+                  </td>
+                  <td>{renderLines(d.time)}</td>
                   <td>
-                    <ul style={{ margin: 0, paddingLeft: 18, lineHeight: 1.7, color: "var(--muted)" }}>
-                      {row.plan.map((item) => (
-                        <li key={item}>{item}</li>
+                    <b>{d.title}</b>
+                    <div style={{ marginTop: 6, color: "var(--muted)" }}>{d.base}</div>
+                    {d.note ? (
+                      <div style={{ marginTop: 8 }}>
+                        <span className="pill">{d.note}</span>
+                      </div>
+                    ) : null}
+                  </td>
+                  <td>
+                    <ul style={{ margin: 0, paddingLeft: 18, color: "var(--muted)", lineHeight: 1.6 }}>
+                      {d.bullets.map((b, i) => (
+                        <li key={`${d.dayLabel}-b-${i}`}>{b}</li>
                       ))}
                     </ul>
                   </td>
-                  <td style={{ whiteSpace: "nowrap" }}>{row.meals}</td>
+                  <td>{d.meals}</td>
                 </tr>
               ))}
             </tbody>
