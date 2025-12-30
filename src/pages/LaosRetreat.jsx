@@ -1,69 +1,198 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+const itinerary = [
+  {
+    dayLabel: "Day 1",
+    date: "Feb 22, 2026",
+    time: ["12:05pm"],
+    base: "Vientiane",
+    activities: [
+      "Arrive at Wattay Airport. Meet guide → lunch at local restaurant.",
+      "Visit Patuxay Monument & That Luang Stupa.",
+      "Hotel check-in.",
+      "Introduce Laos HeartBeat Football Team, give out trophy + man of the match.",
+      "Dinner + interaction with Laos youth.",
+    ],
+    meals: "Lunch, Dinner",
+  },
+  {
+    dayLabel: "Day 2",
+    date: "Feb 23, 2026",
+    time: ["8:00am", "9:50am"],
+    base: "Luang Prabang",
+    activities: [
+      "Breakfast. Transfer to Vientiane train station.",
+      "Depart to Luang Prabang by high-speed train (First Class).",
+      "Arrive → lunch.",
+      "Visit Kuang Si Waterfall / Bear Conservation.",
+      "Check in (Luang Prabang View Hotel).",
+      "Dinner at QQ (largest restaurant/bar, disco). Chill at hilltop pool.",
+    ],
+    meals: "Breakfast, Lunch, Dinner",
+  },
+  {
+    dayLabel: "Day 3",
+    date: "Feb 24, 2026",
+    time: ["5:00am"],
+    base: "Luang Prabang",
+    activities: [
+      "Alms Giving + morning market. Back to hotel breakfast.",
+      "City tour: National Museum, Xiengthong Temple.",
+      "Boat to Pak Ou Cave.",
+      "Phu Si Hill.",
+      "Night market.",
+    ],
+    meals: "Breakfast, Lunch",
+  },
+  {
+    dayLabel: "Day 4",
+    date: "Feb 25, 2026",
+    time: ["8:00am", "10:15am", "12:20pm"],
+    base: "Vientiane",
+    activities: [
+      "Breakfast. To train station.",
+      "Depart to Vientiane by high-speed train (First Class).",
+      "Arrive → lunch.",
+      "Visit Lao Art Museum & Home of Light.",
+      "Hotel check-in.",
+      "Dinner at Kong View Restaurant.",
+    ],
+    meals: "Breakfast, Lunch, Dinner",
+  },
+  {
+    dayLabel: "Day 5",
+    date: "Feb 26, 2026",
+    time: ["6:00am", "10:00am"],
+    base: "Vientiane / Vang Vieng",
+    // Special: split groups
+    groupSplit: {
+      title: "Group split",
+      groups: [
+        {
+          name: "Group A",
+          items: ["Transfer to airport → depart to Singapore."],
+        },
+        {
+          name: "Group B",
+          items: [
+            "Coach to Vang Vieng → lunch → hotel check-in.",
+            "Local boat along Nam Song River.",
+            "Dinner at local restaurant + street walk.",
+          ],
+        },
+      ],
+    },
+    meals: "Breakfast",
+  },
+  {
+    dayLabel: "Day 6",
+    date: "Feb 27, 2026",
+    time: ["9:00am"],
+    base: "Vang Vieng",
+    activities: ["Breakfast. Activities: kayaking, caving, tubing, zipline, Blue Lagoon."],
+    meals: "Breakfast, Lunch",
+  },
+  {
+    dayLabel: "Day 7",
+    date: "Feb 28, 2026",
+    time: ["9:00am"],
+    base: "Vientiane",
+    activities: ["Breakfast. Return to Vientiane. Shopping, local resident house visit, karaoke, massage."],
+    meals: "Breakfast, Lunch",
+  },
+  {
+    dayLabel: "Day 8",
+    date: "Mar 1, 2026",
+    time: ["10:00am", "12:50pm", "5:00pm"],
+    base: "Depart",
+    activities: ["Breakfast. Depart to airport. Flight to Singapore. Arrive Singapore."],
+    meals: "—",
+  },
+];
+
+function renderCellLines(lines) {
+  if (!lines || lines.length === 0) return null;
+  if (lines.length === 1) return lines[0];
+  return (
+    <>
+      {lines.map((t, idx) => (
+        <React.Fragment key={`${t}-${idx}`}>
+          {t}
+          {idx < lines.length - 1 ? <br /> : null}
+        </React.Fragment>
+      ))}
+    </>
+  );
+}
+
 export default function LaosRetreat() {
   return (
     <main className="section">
       <div className="container">
         <span className="badge">🌿 Signature Retreat</span>
-        <h1>Laos Wellness Retreat (Sample 8-Day Flow)</h1>
+        <h1>Laos 8D7N: Vientiane → Luang Prabang → Vang Vieng</h1>
         <p>
-          This is a calm, flexible plan that balances guided wellness moments with generous free time.
-          We can shorten it to 7 days or extend it to 10 days.
+          Itinerary dates: <b>Feb 22, 2026</b> to <b>Mar 1, 2026</b>. Includes high-speed train transfers
+          (First Class) and planned meals as indicated.
         </p>
 
         <div className="panel" style={{ marginTop: 18 }}>
-          <h2>Sample itinerary</h2>
+          <h2>Detailed itinerary</h2>
 
-          <table className="itinerary" aria-label="Sample itinerary table">
+          <table className="itinerary" aria-label="Laos 8D7N itinerary table">
             <thead>
               <tr>
-                <th>Day</th>
+                <th>Day / Date</th>
+                <th>Time</th>
                 <th>Base</th>
-                <th>Wellness + experiences</th>
+                <th>Activities</th>
+                <th>Meals</th>
               </tr>
             </thead>
+
             <tbody>
-              <tr>
-                <td className="day">Day 1</td>
-                <td>Vientiane</td>
-                <td>Arrive + gentle riverside walk. Evening wind-down routine + early night.</td>
-              </tr>
-              <tr>
-                <td className="day">Day 2</td>
-                <td>Vientiane</td>
-                <td>Morning stretch flow (optional). Temple calm time + spa/massage recovery.</td>
-              </tr>
-              <tr>
-                <td className="day">Day 3</td>
-                <td>Luang Prabang</td>
-                <td>Transfer + check-in. Slow heritage walk + quiet café/journaling hour.</td>
-              </tr>
-              <tr>
-                <td className="day">Day 4</td>
-                <td>Luang Prabang</td>
-                <td>Mindful morning + cultural highlights at an unhurried pace. Rest + wellness ritual.</td>
-              </tr>
-              <tr>
-                <td className="day">Day 5</td>
-                <td>Luang Prabang</td>
-                <td>Nature day with restorative breaks. Evening breathwork + sleep hygiene routine.</td>
-              </tr>
-              <tr>
-                <td className="day">Day 6</td>
-                <td>Vang Vieng</td>
-                <td>Transfer into nature. Sunset viewpoint + grounding practice.</td>
-              </tr>
-              <tr>
-                <td className="day">Day 7</td>
-                <td>Vang Vieng</td>
-                <td>Gentle hike or river moment (based on comfort). Free time for deep rest.</td>
-              </tr>
-              <tr>
-                <td className="day">Day 8</td>
-                <td>Depart</td>
-                <td>Short morning stretch + departure. Optional add-on night in Vientiane.</td>
-              </tr>
+              {itinerary.map((row) => (
+                <tr key={`${row.dayLabel}-${row.date}`}>
+                  <td className="day">
+                    {row.dayLabel}
+                    <br />
+                    {row.date}
+                  </td>
+
+                  <td>{renderCellLines(row.time)}</td>
+
+                  <td>{row.base}</td>
+
+                  <td>
+                    {row.activities?.length ? (
+                      <ul style={{ margin: 0, paddingLeft: 18, color: "var(--muted)", lineHeight: 1.6 }}>
+                        {row.activities.map((item, idx) => (
+                          <li key={`${row.dayLabel}-act-${idx}`}>{item}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+
+                    {row.groupSplit ? (
+                      <div style={{ marginTop: row.activities?.length ? 10 : 0 }}>
+                        <b>{row.groupSplit.title}:</b>
+                        {row.groupSplit.groups.map((g, gIdx) => (
+                          <div key={`${row.dayLabel}-group-${gIdx}`} style={{ marginTop: 8 }}>
+                            <b>{g.name}:</b>
+                            <ul style={{ margin: "6px 0 0", paddingLeft: 18, color: "var(--muted)", lineHeight: 1.6 }}>
+                              {g.items.map((gi, giIdx) => (
+                                <li key={`${row.dayLabel}-${g.name}-item-${giIdx}`}>{gi}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    ) : null}
+                  </td>
+
+                  <td>{row.meals}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
 
@@ -83,16 +212,18 @@ export default function LaosRetreat() {
 
         <div className="grid cards section" style={{ padding: "26px 0 0" }}>
           <article className="card">
-            <h3>Retreat themes</h3>
-            <p>Rest • Gentle movement • Deep breathing • Cultural grounding • Nature therapy • Digital detox.</p>
+            <h3>Trip highlights</h3>
+            <p>Patuxay • That Luang • Kuang Si Waterfall • Pak Ou Cave • Phu Si Hill • Nam Song River • Blue Lagoon</p>
           </article>
+
           <article className="card">
-            <h3>Comfort-first planning</h3>
-            <p>We design around sleep, recovery, and realistic energy—not packed schedules.</p>
+            <h3>Transport</h3>
+            <p>High-speed train transfers between Vientiane and Luang Prabang (First Class) + coach transfers.</p>
           </article>
+
           <article className="card">
-            <h3>Small-group care</h3>
-            <p>Ideal for solo travellers who want structure, or friends who want calm shared moments.</p>
+            <h3>Good to know</h3>
+            <p>Meals are included only where indicated. Group A / Group B split happens on Day 5.</p>
           </article>
         </div>
       </div>
