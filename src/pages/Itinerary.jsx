@@ -24,7 +24,7 @@ export default function Itinerary() {
         <span className="badge">🗓️ Itinerary</span>
         <h1>{PACKAGE.title}</h1>
         <p>
-          Travel dates: <b>{PACKAGE.travelDates.start}</b> to <b>{PACKAGE.travelDates.end}</b>. :contentReference[oaicite:2]{index=2}
+          Travel dates: <b>{PACKAGE.travelDates.start}</b> to <b>{PACKAGE.travelDates.end}</b>.
         </p>
 
         <div className="panel" style={{ marginTop: 18 }}>

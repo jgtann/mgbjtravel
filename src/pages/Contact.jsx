@@ -38,7 +38,7 @@ export default function Contact() {
           <h1>Request a quote</h1>
           <p>
             Send an enquiry for the <b>{PACKAGE.title}</b>. The email will be addressed to the operator contact shown in the
-            quotation. :contentReference[oaicite:5]{index=5}
+            quotation.
           </p>
 
           <form className="form" onSubmit={onSubmit}>

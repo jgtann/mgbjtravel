@@ -8,7 +8,7 @@ export default function Pricing() {
       <div className="container">
         <span className="badge">💵 Pricing</span>
         <h1>Package price & policies</h1>
-        <p>All pricing and policies are taken from the quotation document. :contentReference[oaicite:4]{index=4}</p>
+        <p>All pricing and policies are taken from the quotation document.</p>
 
         <div className="grid cards" style={{ marginTop: 18 }}>
           <article className="card">

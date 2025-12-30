@@ -12,7 +12,7 @@ export default function Home() {
             <h1>Discover Laos in 8D7N — temples, waterfalls, caves, and karst landscapes.</h1>
             <p className="lead">
               Follow a curated route from <b>Vientiane</b> to <b>Luang Prabang</b>, with an optional extension to
-              <b> Vang Vieng</b>. Based on the official itinerary and quotation details. :contentReference[oaicite:1]{index=1}
+              <b> Vang Vieng</b>. Based on the official itinerary and quotation details.
             </p>
 
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 16 }}>

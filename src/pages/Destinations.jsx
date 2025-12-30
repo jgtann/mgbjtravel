@@ -9,7 +9,7 @@ export default function Destinations() {
         <span className="badge">📍 Destinations</span>
         <h1>Three bases on one route</h1>
         <p>
-          The itinerary is built around Vientiane → Luang Prabang, with an optional Vang Vieng extension. :contentReference[oaicite:3]{index=3}
+          The itinerary is built around Vientiane → Luang Prabang, with an optional Vang Vieng extension.
         </p>
 
         <div className="grid cards" style={{ marginTop: 18 }}>
