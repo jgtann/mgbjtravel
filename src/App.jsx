@@ -4,10 +4,9 @@ import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 
 import Home from "./pages/Home.jsx";
-import LaosRetreat from "./pages/LaosRetreat.jsx";
-import Vientiane from "./pages/Vientiane.jsx";
-import LuangPrabang from "./pages/LuangPrabang.jsx";
-import VangVieng from "./pages/VangVieng.jsx";
+import Itinerary from "./pages/Itinerary.jsx";
+import Pricing from "./pages/Pricing.jsx";
+import Destinations from "./pages/Destinations.jsx";
 import Contact from "./pages/Contact.jsx";
 
 export default function App() {
@@ -16,11 +15,11 @@ export default function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/laos" element={<LaosRetreat />} />
-        <Route path="/vientiane" element={<Vientiane />} />
-        <Route path="/luang-prabang" element={<LuangPrabang />} />
-        <Route path="/vang-vieng" element={<VangVieng />} />
+        <Route path="/itinerary" element={<Itinerary />} />
+        <Route path="/destinations" element={<Destinations />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<Home />} />
       </Routes>
       <Footer />
     </>

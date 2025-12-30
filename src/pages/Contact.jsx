@@ -1,53 +1,48 @@
 import React, { useState } from "react";
+import { PACKAGE } from "../data/laos8d7n.js";
 
 export default function Contact() {
   const [form, setForm] = useState({
     name: "",
     email: "",
-    destination: "Laos (Vientiane • Luang Prabang • Vang Vieng)",
-    month: "",
+    pax: "",
+    group: "Group A (22–26 Feb 2026)",
     message: "",
   });
 
   function update(key, value) {
-    setForm((prev) => ({ ...prev, [key]: value }));
+    setForm((p) => ({ ...p, [key]: value }));
   }
 
   function onSubmit(e) {
     e.preventDefault();
-
-    const to = "hello@mgbjtravel.com"; // change later
-    const subject = `Wellness Retreat Enquiry – ${form.destination} (${form.month || "Preferred dates"})`;
+    const to = PACKAGE.operator.email;
+    const subject = `Enquiry: Laos 8D7N (${form.group}) — ${form.pax || "Pax?"}`;
     const body =
       `Name: ${form.name}\n` +
       `Email: ${form.email}\n` +
-      `Destination focus: ${form.destination}\n` +
-      `Preferred month: ${form.month}\n\n` +
-      `Message:\n${form.message}`;
+      `Pax: ${form.pax}\n` +
+      `Package: ${PACKAGE.title}\n` +
+      `Preferred group: ${form.group}\n\n` +
+      `Message:\n${form.message}\n\n` +
+      `Operator contact (from quotation): ${PACKAGE.operator.email}`;
 
-    const mailto = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   return (
     <main className="section">
       <div className="container split">
         <div className="panel">
-          <span className="badge">✉️ Enquiry</span>
-          <h1>Plan your Laos wellness retreat</h1>
+          <span className="badge">✉️ Contact</span>
+          <h1>Request a quote</h1>
           <p>
-            Tell us your preferred month, travel style, and pace. We’ll propose a calm itinerary spotlighting Vientiane,
-            Luang Prabang, and Vang Vieng.
+            Send an enquiry for the <b>{PACKAGE.title}</b>. The email will be addressed to the operator contact shown in the
+            quotation. :contentReference[oaicite:5]{index=5}
           </p>
 
           <form className="form" onSubmit={onSubmit}>
-            <input
-              value={form.name}
-              onChange={(e) => update("name", e.target.value)}
-              placeholder="Your name"
-              required
-            />
-
+            <input value={form.name} onChange={(e) => update("name", e.target.value)} placeholder="Your name" required />
             <input
               value={form.email}
               onChange={(e) => update("email", e.target.value)}
@@ -55,47 +50,45 @@ export default function Contact() {
               placeholder="Your email"
               required
             />
+            <input value={form.pax} onChange={(e) => update("pax", e.target.value)} placeholder="How many pax?" />
 
-            <select value={form.destination} onChange={(e) => update("destination", e.target.value)}>
-              <option>Laos (Vientiane • Luang Prabang • Vang Vieng)</option>
-              <option>Vientiane focus</option>
-              <option>Luang Prabang focus</option>
-              <option>Vang Vieng focus</option>
+            <select value={form.group} onChange={(e) => update("group", e.target.value)}>
+              <option>Group A (22–26 Feb 2026)</option>
+              <option>Group B (Extension to Vang Vieng)</option>
             </select>
-
-            <input
-              value={form.month}
-              onChange={(e) => update("month", e.target.value)}
-              placeholder="Preferred month (e.g., May 2026)"
-            />
 
             <textarea
               value={form.message}
               onChange={(e) => update("message", e.target.value)}
-              placeholder="What kind of wellness do you want? (spa focus / yoga focus / nature reset / slow culture)"
+              placeholder="Any questions? (rooming, diet needs, flight timing, etc.)"
             />
 
             <button className="btn" type="submit">
               Send enquiry
             </button>
 
-            <small>Opens your email app (no backend needed yet). Later we can connect a real form + CRM.</small>
+            <small>Opens your email app (no backend needed yet).</small>
           </form>
         </div>
 
         <div className="panel">
-          <h2>What we’ll ask (so we plan well)</h2>
-          <ul style={{ color: "var(--muted)", lineHeight: 1.8 }}>
-            <li>Your ideal pace (slow / moderate)</li>
-            <li>Any mobility or comfort needs</li>
-            <li>Wellness focus (spa / yoga / nature / culture)</li>
-            <li>Room type and budget range</li>
-          </ul>
-
-          <h3 style={{ marginTop: 14 }}>Business email</h3>
-          <p>
-            <b>hello@mgbjtravel.com</b> (change to your real inbox later)
+          <h2>Operator details</h2>
+          <p style={{ color: "var(--muted)", lineHeight: 1.7 }}>
+            <b>{PACKAGE.operator.name}</b>
+            <br />
+            {PACKAGE.operator.address}
+            <br />
+            Tel: {PACKAGE.operator.tel}
+            <br />
+            Email: {PACKAGE.operator.email}
           </p>
+
+          <h2 style={{ marginTop: 18 }}>Good to know</h2>
+          <ul style={{ margin: "10px 0 0", paddingLeft: 18, color: "var(--muted)", lineHeight: 1.7 }}>
+            <li>{PACKAGE.policies.booking[0]}</li>
+            <li>{PACKAGE.policies.booking[1]}</li>
+            <li>{PACKAGE.policies.cancellation[0]}</li>
+          </ul>
         </div>
       </div>
     </main>
