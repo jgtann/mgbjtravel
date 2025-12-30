@@ -1,0 +1,6 @@
+# Ignore dependencies and build files
+node_modules
+dist
+.env
+.vite
+.DS_Store
