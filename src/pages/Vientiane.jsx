@@ -32,7 +32,7 @@ const vientianePlan = [
       "Hotel check-in",
       "Dinner at Kong View Restaurant",
     ],
-    meals: "Breakfast, Lunch (Dinner listed in itinerary text)",
+    meals: "Breakfast, Lunch, Dinner",
   },
   {
     dayLabel: "Day 5",
@@ -86,72 +86,81 @@ export default function Vientiane() {
     <main className="section">
       <div className="container">
         <span className="badge">🧘 Destination Spotlight</span>
-        <h1>Vientiane: landmarks, culture, and warm community moments</h1>
-
+        <h1>Vientiane: a soft landing for your nervous system</h1>
         <p>
-          In this 8D7N route, Vientiane is not just a transit point—it’s where the journey begins with
-          iconic monuments, and later returns for arts, light installations, and relaxed leisure time
-          (shopping, massage, karaoke). :contentReference[oaicite:1]{index=1}
+          Vientiane is where the journey begins with iconic landmarks, and where you return later for arts, light
+          installations, and relaxed leisure time (shopping, massage, karaoke).
         </p>
 
+        {/* Re-coded to match the earlier "spotlight" layout: 3 cards + a signature panel list */}
         <div className="grid cards" style={{ marginTop: 18 }}>
           <article className="card">
-            <h3>Iconic landmarks</h3>
-            <p>Patuxay Monument and That Luang Stupa are the headline visits on arrival day.</p>
+            <h3>Wellness flow</h3>
+            <p>
+              Arrival-day pacing with hotel check-in, plus easy evenings—designed to keep energy steady and avoid overloading.
+            </p>
           </article>
+
           <article className="card">
-            <h3>Arts & Light</h3>
-            <p>Lao Art Museum + Home of Light are featured after returning from Luang Prabang.</p>
+            <h3>Signature stops</h3>
+            <p>
+              Patuxay Monument, That Luang Stupa, Lao Art Museum, and Home of Light—key highlights across the Vientiane days.
+            </p>
           </article>
+
           <article className="card">
-            <h3>Community moments</h3>
-            <p>Special interaction with Laos youth / Laos HeartBeat Football Team is included on Day 1.</p>
+            <h3>Local connection</h3>
+            <p>
+              A meaningful community moment: Laos HeartBeat Football Team introduction and youth interaction is built into Day 1.
+            </p>
           </article>
         </div>
 
         <div className="panel" style={{ marginTop: 18 }}>
-          <h2>Vientiane itinerary highlights (from the tour plan)</h2>
+          <h2>Vientiane plan (from the itinerary)</h2>
 
-          <table className="itinerary" aria-label="Vientiane itinerary table">
-            <thead>
-              <tr>
-                <th>Day / Date</th>
-                <th>Time</th>
-                <th>Focus</th>
-                <th>What’s planned</th>
-                <th>Meals</th>
-              </tr>
-            </thead>
-            <tbody>
-              {vientianePlan.map((d) => (
-                <tr key={`${d.dayLabel}-${d.date}`}>
-                  <td className="day">
-                    {d.dayLabel}
-                    <br />
-                    {d.date}
-                  </td>
-                  <td>{renderLines(d.time)}</td>
-                  <td>
-                    <b>{d.title}</b>
-                    <div style={{ marginTop: 6, color: "var(--muted)" }}>{d.base}</div>
-                    {d.note ? (
-                      <div style={{ marginTop: 8 }}>
-                        <span className="pill">{d.note}</span>
-                      </div>
-                    ) : null}
-                  </td>
-                  <td>
-                    <ul style={{ margin: 0, paddingLeft: 18, color: "var(--muted)", lineHeight: 1.6 }}>
-                      {d.bullets.map((b, i) => (
-                        <li key={`${d.dayLabel}-b-${i}`}>{b}</li>
-                      ))}
-                    </ul>
-                  </td>
-                  <td>{d.meals}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          {vientianePlan.map((d) => (
+            <div
+              key={`${d.dayLabel}-${d.date}`}
+              style={{
+                border: "1px solid var(--line)",
+                borderRadius: 16,
+                padding: 14,
+                background: "rgba(255,255,255,.03)",
+                marginTop: 12,
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+                <div>
+                  <b>
+                    {d.dayLabel} • {d.date}
+                  </b>
+                  <div style={{ marginTop: 6, color: "var(--muted)" }}>
+                    {d.base} • {renderLines(d.time)}
+                  </div>
+                </div>
+
+                <div style={{ textAlign: "right" }}>
+                  <span className="pill">{d.meals}</span>
+                </div>
+              </div>
+
+              <div style={{ marginTop: 10 }}>
+                <b>{d.title}</b>
+                {d.note ? (
+                  <div style={{ marginTop: 8 }}>
+                    <span className="pill">{d.note}</span>
+                  </div>
+                ) : null}
+
+                <ul style={{ margin: "10px 0 0", paddingLeft: 18, color: "var(--muted)", lineHeight: 1.6 }}>
+                  {d.bullets.map((b, i) => (
+                    <li key={`${d.dayLabel}-b-${i}`}>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
 
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginTop: 14 }}>
             <Link className="btn" to="/contact">
