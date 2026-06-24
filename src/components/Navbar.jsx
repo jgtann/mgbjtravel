@@ -1,28 +1,52 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
+import './Navbar.css';
 
-export default function Navbar() {
-  const [open, setOpen] = useState(false);
+const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { language, toggleLanguage, t } = useLanguage();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="nav">
-      <div className="container nav-inner">
-        <Link className="brand" to="/" onClick={() => setOpen(false)}>
-          <span className="logo" aria-hidden="true" />
-          <span>Laos Travel</span>
-        </Link>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <div className="container-wide navbar-container">
+        <div className="navbar-logo">
+          <Link to="/">
+            {t('brandFirst')}<span>{t('brandSecond')}</span>
+          </Link>
+        </div>
+        
+        <div className={`navbar-links ${mobileMenuOpen ? 'active' : ''}`}>
+          <Link to="/" onClick={() => setMobileMenuOpen(false)}>{t('home')}</Link>
+          <a href="/#article" onClick={() => setMobileMenuOpen(false)}>{t('latestPost')}</a>
+          <Link to="/login" onClick={() => setMobileMenuOpen(false)}>{t('admin')}</Link>
+          <button className="btn btn-primary nav-btn">{t('subscribe')}</button>
+          
+          <button onClick={toggleLanguage} className="btn nav-btn" style={{ background: 'transparent', border: '1px solid currentColor', padding: '0.4rem 1rem' }}>
+            {language === 'en' ? '中文' : 'EN'}
+          </button>
+        </div>
 
-        <button className="menu-toggle" type="button" onClick={() => setOpen((v) => !v)}>
-          Menu
-        </button>
-
-        <nav className={`menu ${open ? "open" : ""}`}>
-          <NavLink to="/itinerary" onClick={() => setOpen(false)}>Itinerary</NavLink>
-          <NavLink to="/destinations" onClick={() => setOpen(false)}>Destinations</NavLink>
-          <NavLink to="/pricing" onClick={() => setOpen(false)}>Pricing</NavLink>
-          <NavLink to="/contact" onClick={() => setOpen(false)}>Contact</NavLink>
-        </nav>
+        <div className="mobile-menu-icon" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <i className={`fas ${mobileMenuOpen ? 'fa-times' : 'fa-bars'}`}></i>
+        </div>
       </div>
-    </header>
+    </nav>
   );
-}
+};
+
+export default Navbar;

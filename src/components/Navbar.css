@@ -1,0 +1,131 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1.5rem 0;
+  z-index: 1000;
+  transition: all var(--transition-normal);
+  background: transparent;
+}
+
+.navbar.scrolled {
+  padding: 1rem 0;
+  background: var(--bg-card);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo a {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.navbar.scrolled .navbar-logo a,
+.navbar:not(.scrolled) .navbar-logo a {
+  color: var(--text-main);
+}
+
+/* Specific color adjustments if hero is dark */
+.navbar:not(.scrolled) .navbar-logo a {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+.navbar-logo span {
+  color: var(--accent);
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar-links a {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.navbar.scrolled .navbar-links a {
+  color: var(--text-main);
+}
+
+.navbar:not(.scrolled) .navbar-links a {
+  color: white;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.navbar-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--transition-fast);
+}
+
+.navbar-links a:hover::after {
+  width: 100%;
+}
+
+.nav-btn {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.85rem;
+}
+
+.mobile-menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.navbar.scrolled .mobile-menu-icon {
+  color: var(--text-main);
+}
+.navbar:not(.scrolled) .mobile-menu-icon {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-icon {
+    display: block;
+  }
+
+  .navbar-links {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    flex-direction: column;
+    width: 250px;
+    padding: 2rem;
+    gap: 1.5rem;
+    align-items: flex-start;
+    transition: right var(--transition-normal);
+    background: var(--bg-card);
+    box-shadow: -5px 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .navbar-links.active {
+    right: 0;
+  }
+  
+  .navbar-links a {
+    color: var(--text-main) !important;
+    text-shadow: none !important;
+  }
+}

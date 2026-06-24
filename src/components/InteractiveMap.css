@@ -1,0 +1,138 @@
+.map-section {
+  padding: 8rem 0;
+  background-color: var(--bg-alt);
+}
+
+.map-container {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  min-height: 70vh;
+}
+
+.map-visual {
+  flex: 1;
+  height: 600px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.mekong-river-svg {
+  width: 100%;
+  height: 100%;
+  max-width: 400px;
+  overflow: visible;
+}
+
+.river-path {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: flowRiver 4s ease forwards;
+  opacity: 0.3;
+}
+
+@keyframes flowRiver {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.map-node {
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.node-outer {
+  fill: var(--accent);
+  opacity: 0;
+  transition: all var(--transition-fast);
+}
+
+.node-inner {
+  fill: var(--bg-main);
+  stroke: var(--accent);
+  stroke-width: 0.3;
+  transition: all var(--transition-fast);
+}
+
+.node-label {
+  font-family: var(--font-body);
+  font-size: 2px;
+  fill: var(--text-light);
+  opacity: 0.5;
+  transition: all var(--transition-fast);
+}
+
+.map-node:hover .node-outer,
+.map-node.active .node-outer {
+  opacity: 0.2;
+  r: 2.5;
+}
+
+.map-node:hover .node-inner,
+.map-node.active .node-inner {
+  fill: var(--accent);
+}
+
+.map-node:hover .node-label,
+.map-node.active .node-label {
+  fill: var(--text-main);
+  opacity: 1;
+  font-weight: 600;
+}
+
+.map-info {
+  flex: 1;
+  padding: 2rem;
+}
+
+.map-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--text-main);
+}
+
+.map-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+  margin-bottom: 3rem;
+}
+
+.active-province-card {
+  background: var(--bg-main);
+  padding: 3rem;
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+  animation: fadeIn var(--transition-slow);
+}
+
+.active-province-card h3 {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.active-province-card p {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  line-height: 1.8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 992px) {
+  .map-container {
+    flex-direction: column;
+  }
+  .map-visual {
+    height: 400px;
+    width: 100%;
+  }
+  .active-province-card {
+    padding: 2rem;
+  }
+}
